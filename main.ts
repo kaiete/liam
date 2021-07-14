@@ -1,61 +1,61 @@
-input.onButtonPressed(Button.A, function () {
-    basic.showString("A = food, B = water")
-    input.onButtonPressed(Button.A, function () {
+let happiness = 3
+let previousHappiness
+let noSadness = false
+input.onButtonPressed(Button.A, function on_button_pressed_a() {
+    noSadness = true
         basic.showString("You gave food to Liam!")
         if (happiness != 3) {
             happiness = happiness + 1
         } else {
             happiness = 0
         }
-    })
+    noSadness = false
+        
 })
-let millis = 0
-let happiness = 2
-basic.forever(function () {
+input.onGesture(Gesture.Shake, function() {
+    previousHappiness = happiness
+    happiness = 0
+    basic.pause(2000)
+    happiness = previousHappiness
+})
+basic.forever(function on_forever() {
     if (happiness == 3) {
         basic.showLeds(`
             . # . # .
-            . # . # .
-            . . . . .
-            # . . . #
-            . # # # .
-            `)
+                        . # . # .
+                        . . . . .
+                        # . . . #
+                        . # # # .
+        `)
     } else if (happiness == 2) {
         basic.showLeds(`
             . # . # .
-            . # . # .
-            . . . . .
-            # # # # #
-            . . . . .
-            `)
+                        . # . # .
+                        . . . . .
+                        # # # # #
+                        . . . . .
+        `)
     } else if (happiness == 1) {
         basic.showLeds(`
             . # . # .
-            . # . # .
-            . . . . .
-            . # # # .
-            # . . . #
-            `)
+                        . # . # .
+                        . . . . .
+                        . # # # .
+                        # . . . #
+        `)
     } else if (happiness == 0) {
         basic.showLeds(`
             . # . # .
-            . . . . .
-            . # # # .
-            # . . . #
-            # # # # #
-            `)
+                        . . . . .
+                        . # # # .
+                        # . . . #
+                        # # # # #
+        `)
     }
+    
 })
-basic.forever(function () {
-    millis = millis + 1
-})
-basic.forever(function () {
-    // millis == 1800000 in production
-    if (millis == 10000) {
+loops.everyInterval(20000,function() {
+    if (happiness != 1 && noSadness != true) {
         happiness = happiness - 1
-        if (happiness == 0) {
-            happiness = happiness + 1
-        }
-        millis = 0
     }
 })
