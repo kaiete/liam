@@ -1,5 +1,5 @@
 
-> Open this page at [https://kaiete.github.io/liam/](https://kaiete.github.io/liam/)
+> Open this page at [kaiete.uk/liam](https://kaiete.github.io/liam/)
 
 ## Use as Extension
 
