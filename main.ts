@@ -85,7 +85,7 @@ basic.forever(function () {
 basic.forever(function () {
     showMood()
 })
-loops.everyInterval(1200000, function () {
+loops.everyInterval(300000, function () {
     if (happiness != 1 && noSadness != true) {
         happiness = happiness - 1
         showMood()
