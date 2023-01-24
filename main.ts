@@ -1,12 +1,6 @@
-let y: Image = null
-let x = ""
-let noSadness = false
-let happiness = 0
-happiness = 3
-let previousHappiness
 input.onButtonPressed(Button.A, function () {
     noSadness = true
-    basic.showString("You fed Liam!")
+    basic.showIcon(IconNames.Yes)
     if (happiness != 3) {
         happiness = happiness + 1
     } else {
@@ -55,7 +49,7 @@ input.onButtonPressed(Button.AB, function () {
 })
 input.onButtonPressed(Button.B, function () {
     noSadness = true
-    basic.showString("You gave Liam water!")
+    basic.showIcon(IconNames.Yes)
     if (happiness == 0) {
         happiness = 2
     }
@@ -67,7 +61,12 @@ input.onGesture(Gesture.Shake, function () {
     basic.pause(2000)
     happiness = previousHappiness
 })
-
+let y: Image = null
+let x = ""
+let noSadness = false
+let happiness = 0
+happiness = 3
+let previousHappiness
 basic.forever(function () {
     radio.setGroup(178)
     x = radio.receiveString()
@@ -79,7 +78,9 @@ basic.forever(function () {
         . . # . . . . # . .
         `)
     if (x == "init") {
+        basic.clearScreen()
         y.scrollImage(2, 200)
+        happiness = 3
     }
 })
 basic.forever(function () {
